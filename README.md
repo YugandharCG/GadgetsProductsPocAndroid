@@ -15,3 +15,6 @@
 * live data
 * viewmodel 
 * States
+  
+**Note**
+The project is in progress it mostly undrerstanding the concepts.
