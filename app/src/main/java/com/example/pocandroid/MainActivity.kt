@@ -10,18 +10,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import com.example.pocandroid.ui.theme.PocAndroidTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     val TAG = MainActivity::class.java.simpleName
     val mainviewModel: MainViewModel by viewModel<MainViewModel>()
@@ -31,11 +35,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             PocAndroidTheme {
                 val objects = mainviewModel.objects.collectAsState()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Scaffold(modifier = Modifier.fillMaxSize(), topBar ={TopAppBar(title = {
+                    Text(text = stringResource(R.string.title_gadgets))}
+                ) } ) { innerPadding ->
+
                     objects.let {
                         if (!it.value.isNullOrEmpty()) {
                             ProductList(it.value!!)
