@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PocAndroid</string>
+    <string name="title_gadgets">Gadgets list</string>
 </resources>
